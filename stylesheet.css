@@ -1,0 +1,34 @@
+body {
+    background-color: gray;
+    /* font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 20px; */
+}
+
+.game-board {
+    max-width: 400px;
+    min-height: 400px;
+    margin: 150px auto;
+    padding: 50px 50px;
+    background: white;
+    border: solid 10px rgba(172, 86, 5, 0.548);
+    border-radius: 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.game-square {
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    text-align: center;
+}
+
+.game-square:nth-child(3n) {
+    border-right: 1px solid black;
+}
+
+.game-square:nth-child(n+7) {
+    border-bottom: 1px solid black;
+}
