@@ -2,29 +2,32 @@
 
 const gameBoard = (() => {
     const gameGrid = [];
-    for (let i = 0; i < 9; i++) gameGrid.push(i);
+    for (let i = 0; i < 9; i++) gameGrid.push('X');
 
-    return {gameGrid};
+    const render = () => {
+        for (let i = 0; i < 9; i++) {
+            const squareContent = document.getElementById(`s${i}`);
+            squareContent.textContent = gameGrid[i];
+        }        
+    }
+    return {render};
 })();
 
 const GameMechanic = (() => {
 
 })();
 
+const displayController = (() => {
+    const gameBoardDOM = document.getElementById("game-board");
+    const gameSquares = document.querySelectorAll(".game-square");
+})();
+
 const Player = () => {
 
 };
 
-const gameBoardDOM = document.getElementById("game-board");
-const gameSquares = document.querySelectorAll(".game-square");
-
-for (let i=0; i<9; i++) {
-    const square = document.getElementById(`s${i}`);
-    square.textContent = gameBoard.gameGrid[i];
-}
+gameBoard.render();
 
 /*
 To-do
-- try flexbox with 3 rows for grids
-
 */
