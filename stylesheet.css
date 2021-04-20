@@ -14,21 +14,34 @@ body {
     background: white;
     border: solid 10px rgba(172, 86, 5, 0.548);
     border-radius: 80px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-board-row {
+    display: flex;
+    flex-grow: 1;
 }
 
 .game-square {
     border-left: 1px solid black;
     border-top: 1px solid black;
     text-align: center;
+    flex-grow: 1;
+    justify-content: center;
+    display: flex;
 }
 
 .game-square:nth-child(3n) {
     border-right: 1px solid black;
 }
 
-.game-square:nth-child(n+7) {
+.game-board-row:nth-child(3) {
     border-bottom: 1px solid black;
+}
+
+.game-square-content {
+    margin: auto;
+    font-size: 50px;
+    pointer-events: none;
 }
