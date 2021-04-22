@@ -14,8 +14,9 @@ body {
     background: white;
     border: solid 10px rgba(172, 86, 5, 0.548);
     border-radius: 80px;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .game-board-row {
@@ -32,16 +33,16 @@ body {
     display: flex;
 }
 
-.game-square:nth-child(3n) {
+#s2,#s5,#s8 {
     border-right: 1px solid black;
 }
 
-.game-board-row:nth-child(3) {
+#s6,#s7,#s8 {
     border-bottom: 1px solid black;
 }
 
 .game-square-content {
     margin: auto;
-    font-size: 50px;
+    font-size: 90px;
     pointer-events: none;
 }

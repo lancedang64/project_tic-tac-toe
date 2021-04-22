@@ -2,15 +2,21 @@
 
 const gameBoard = (() => {
     const gameGrid = [];
-    for (let i = 0; i < 9; i++) gameGrid.push('X');
+    for (let i = 0; i < 9; i++) gameGrid.push('');
 
     const render = () => {
         for (let i = 0; i < 9; i++) {
-            const squareContent = document.getElementById(`s${i}`);
+            const squareContent = document.getElementById(`c${i}`);
             squareContent.textContent = gameGrid[i];
         }        
-    }
-    return {render};
+    };
+
+    const playMove = (e) => {
+        const squareSelected = e.target.id.slice(1);
+        gameGrid[squareSelected] = "X";
+        render();
+    };
+    return {playMove};
 })();
 
 const GameMechanic = (() => {
@@ -19,14 +25,22 @@ const GameMechanic = (() => {
 
 const displayController = (() => {
     const gameBoardDOM = document.getElementById("game-board");
-    const gameSquares = document.querySelectorAll(".game-square");
+
+    const addPlayListeners = () => {
+        const gameSquares = document.querySelectorAll(".game-square");
+        gameSquares.forEach(square => {
+            square.addEventListener('click', gameBoard.playMove);
+        });
+    };
+    return {addPlayListeners};
 })();
 
 const Player = () => {
 
 };
 
-gameBoard.render();
+displayController.addPlayListeners();
+
 
 /*
 To-do
