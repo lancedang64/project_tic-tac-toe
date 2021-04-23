@@ -66,22 +66,22 @@ const gameBoard = (() => {
     else currentSymbolLocations = oLocations;
     let isGameOver = false;
 
-    winConditionArrays.forEach(winCondition => {
-        if (isArraySubsetOfAnother(winCondition, currentSymbolLocations)) {
-            isGameOver = true;
-            return;    
-        }
+    winConditionArrays.forEach((winCondition) => {
+      if (isArraySubsetOfAnother(winCondition, currentSymbolLocations)) {
+        isGameOver = true;
+        return;
+      }
     });
     return isGameOver;
   };
 
   const isArraySubsetOfAnother = (subsetArray, supersetArray) => {
     for (let i = 0; i < subsetArray.length; i++) {
-        for (let j = 0; j < supersetArray.length; j++) {
-            if (subsetArray[i] == supersetArray[j]) {
-                break;
-            } else if (j == supersetArray.length - 1) return false;
-        }
+      for (let j = 0; j < supersetArray.length; j++) {
+        if (subsetArray[i] == supersetArray[j]) {
+          break;
+        } else if (j == supersetArray.length - 1) return false;
+      }
     }
     return true;
   };
@@ -96,7 +96,13 @@ const gameBoard = (() => {
     else currentPlayer = player1;
   };
 
-  return { startNewGame, playMove, xLocations, oLocations, isArraySubsetOfAnother };
+  return {
+    startNewGame,
+    playMove,
+    xLocations,
+    oLocations,
+    isArraySubsetOfAnother,
+  };
 })();
 
 const displayController = (() => {
