@@ -1,9 +1,14 @@
+@font-face {
+    font-family: 'ArcadeClassic';
+    src:  url('font/ArcadeClassic.woff2') format('woff2'),
+          url('font/ArcadeClassic.woff') format('woff'),
+          url('font/ArcadeClassic.ttf') format('truetype');
+  }
+
 body {
     background-color: gray;
-    /* font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 20px; */
+    font-family: 'ArcadeClassic';
+    font-weight: normal;
 }
 
 .game-board {
@@ -31,6 +36,11 @@ body {
     flex-grow: 1;
     justify-content: center;
     display: flex;
+}
+
+.game-square:hover {
+    background-color:rgba(206, 130, 60, 0.281);
+    cursor: pointer;
 }
 
 #s2,#s5,#s8 {
