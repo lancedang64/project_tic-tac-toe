@@ -21,6 +21,7 @@ const gameBoard = (() => {
   let currentPlayer;
 
   const startNewGame = () => {
+    displayController.addListeners();
     currentPlayer = player1;
   };
 
@@ -33,7 +34,6 @@ const gameBoard = (() => {
       render(squareSelected);
       if (isGameOver()) {
         endGame(currentPlayer);
-        return;
       } else switchCurrentPlayer();
     }
   };
@@ -59,8 +59,7 @@ const gameBoard = (() => {
   };
 
   const isGameOver = () => {
-    // check if any winConditionArray is subset of X or O arrays
-    console.log("checking if game is over");
+    // check if any winConditionArray is subset of X or O location arrays
     let currentSymbolLocations;
     if (currentPlayer == player1) currentSymbolLocations = xLocations;
     else currentSymbolLocations = oLocations;
@@ -87,7 +86,7 @@ const gameBoard = (() => {
   };
 
   const endGame = (currentPlayer) => {
-    // freeze display
+    displayController.removeListeners();
     console.log(`Game Over, ${currentPlayer.name} is the winner`);
   };
 
@@ -99,20 +98,24 @@ const gameBoard = (() => {
   return {
     startNewGame,
     playMove,
-    xLocations,
-    oLocations,
-    isArraySubsetOfAnother,
   };
 })();
 
 const displayController = (() => {
-  const addPlayListeners = () => {
-    const gameSquares = document.querySelectorAll(".game-square");
+  const gameSquares = document.querySelectorAll(".game-square");
+
+  const addListeners = () => {
     gameSquares.forEach((square) => {
       square.addEventListener("click", gameBoard.playMove);
     });
   };
-  return { addPlayListeners };
+
+  const removeListeners = () => {
+    gameSquares.forEach((square) => {
+      square.removeEventListener("click", gameBoard.playMove);
+    });
+  };
+  return { addListeners, removeListeners };
 })();
 
 const Player = (name, symbol) => {
@@ -122,7 +125,6 @@ const Player = (name, symbol) => {
 const player1 = Player("Player 1", "X");
 const player2 = Player("Player 2", "O");
 
-displayController.addPlayListeners();
 gameBoard.startNewGame();
 
 //Auto-start new game on site open
