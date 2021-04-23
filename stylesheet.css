@@ -8,13 +8,17 @@
 body {
     background-color: gray;
     font-family: 'ArcadeClassic';
-    font-weight: normal;
+    font-weight: normal; 
+}
+
+.content {
+    margin: 150px auto;
 }
 
 .game-board {
     max-width: 400px;
     min-height: 400px;
-    margin: 150px auto;
+    margin: 0px auto;
     padding: 50px 50px;
     background: white;
     border: solid 10px rgba(172, 86, 5, 0.548);
@@ -55,4 +59,11 @@ body {
     margin: auto;
     font-size: 90px;
     pointer-events: none;
+}
+
+h1 {
+    text-align: center;
+    background-color: rgb(99, 202, 144);
+    font-size: 50px;
+    letter-spacing: 0.2em;
 }

@@ -32,9 +32,9 @@ const gameBoard = (() => {
       updateSymbolLocation(squareSelected);
       updateGridArray(squareSelected);
       render(squareSelected);
-      if (isGameOver()) {
-        endGame(currentPlayer);
-      } else switchCurrentPlayer();
+      if (isPlayerWin()) endGame("win");
+      else if (isATie()) endGame("tie");
+      else switchCurrentPlayer();
     }
   };
 
@@ -58,36 +58,42 @@ const gameBoard = (() => {
     squareContent.textContent = gameGridArray[squareSelected];
   };
 
-  const isGameOver = () => {
+  const isPlayerWin = () => {
     // check if any winConditionArray is subset of X or O location arrays
     let currentSymbolLocations;
     if (currentPlayer == player1) currentSymbolLocations = xLocations;
     else currentSymbolLocations = oLocations;
-    let isGameOver = false;
+    let isPlayerWin = false;
 
     winConditionArrays.forEach((winCondition) => {
       if (isArraySubsetOfAnother(winCondition, currentSymbolLocations)) {
-        isGameOver = true;
+        isPlayerWin = true;
         return;
       }
     });
-    return isGameOver;
+    return isPlayerWin;
   };
 
-  const isArraySubsetOfAnother = (subsetArray, supersetArray) => {
-    for (let i = 0; i < subsetArray.length; i++) {
-      for (let j = 0; j < supersetArray.length; j++) {
-        if (subsetArray[i] == supersetArray[j]) {
+  const isATie = () => {
+    if (xLocations.length === 5) return true;
+    else return false;
+  };
+
+  const isArraySubsetOfAnother = (subset, superset) => {
+    for (let i = 0; i < subset.length; i++) {
+      for (let j = 0; j < superset.length; j++) {
+        if (subset[i] == superset[j]) {
           break;
-        } else if (j == supersetArray.length - 1) return false;
+        } else if (j == superset.length - 1) return false;
       }
     }
     return true;
   };
 
-  const endGame = (currentPlayer) => {
+  const endGame = (result) => {
+    if (result === "win") displayController.displayResult(currentPlayer.name);
+    else displayController.displayResult("tie");
     displayController.removeListeners();
-    console.log(`Game Over, ${currentPlayer.name} is the winner`);
   };
 
   const switchCurrentPlayer = () => {
@@ -103,6 +109,7 @@ const gameBoard = (() => {
 
 const displayController = (() => {
   const gameSquares = document.querySelectorAll(".game-square");
+  const contentDiv = document.querySelector(".content");
 
   const addListeners = () => {
     gameSquares.forEach((square) => {
@@ -115,7 +122,15 @@ const displayController = (() => {
       square.removeEventListener("click", gameBoard.playMove);
     });
   };
-  return { addListeners, removeListeners };
+
+  const displayResult = (result) => {
+    const resultText = document.createElement("h1");
+    if (result === "tie") resultText.textContent = "It's a tie!";
+    else resultText.textContent = `${result} is the winner!`;
+    contentDiv.insertBefore(resultText, contentDiv.firstChild);
+  };
+
+  return { addListeners, removeListeners, displayResult };
 })();
 
 const Player = (name, symbol) => {
@@ -127,9 +142,11 @@ const player2 = Player("Player 2", "O");
 
 gameBoard.startNewGame();
 
-//Auto-start new game on site open
-//gameMechanic.startNewGame(player1,player2);
-
 /*
 To-do
+- Announce winner on UI
+- New Game button
+- user case: tie game
+- HTML flairs (need to design)
+- animation for placing X and O on the board
 */
