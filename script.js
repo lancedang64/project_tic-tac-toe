@@ -125,6 +125,7 @@ const displayController = (() => {
 
   const displayResult = (result) => {
     const resultText = document.createElement("h1");
+    resultText.className = "result";
     if (result === "tie") resultText.textContent = "It's a tie!";
     else resultText.textContent = `${result} is the winner!`;
     contentDiv.insertBefore(resultText, contentDiv.firstChild);
