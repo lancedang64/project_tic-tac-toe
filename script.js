@@ -144,9 +144,7 @@ gameBoard.startNewGame();
 
 /*
 To-do
-- Announce winner on UI
 - New Game button
-- user case: tie game
 - HTML flairs (need to design)
 - animation for placing X and O on the board
 */

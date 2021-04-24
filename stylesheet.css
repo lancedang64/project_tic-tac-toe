@@ -1,69 +1,73 @@
 @font-face {
-    font-family: 'ArcadeClassic';
-    src:  url('font/ArcadeClassic.woff2') format('woff2'),
-          url('font/ArcadeClassic.woff') format('woff'),
-          url('font/ArcadeClassic.ttf') format('truetype');
-  }
+  font-family: "ArcadeClassic";
+  src: url("font/ArcadeClassic.woff2") format("woff2"),
+    url("font/ArcadeClassic.woff") format("woff"),
+    url("font/ArcadeClassic.ttf") format("truetype");
+}
 
 body {
-    background-color: gray;
-    font-family: 'ArcadeClassic';
-    font-weight: normal; 
+  background-color: gray;
+  font-family: "ArcadeClassic";
+  font-weight: normal;
 }
 
 .content {
-    margin: 150px auto;
+  margin: 150px auto;
 }
 
 .game-board {
-    max-width: 400px;
-    min-height: 400px;
-    margin: 0px auto;
-    padding: 50px 50px;
-    background: white;
-    border: solid 10px rgba(172, 86, 5, 0.548);
-    border-radius: 80px;
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
+  max-width: 400px;
+  min-height: 400px;
+  margin: 0px auto;
+  padding: 50px 50px;
+  background: white;
+  border: solid 10px rgba(172, 86, 5, 0.548);
+  border-radius: 80px;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .game-board-row {
-    display: flex;
-    flex-grow: 1;
+  display: flex;
+  flex-grow: 1;
 }
 
 .game-square {
-    border-left: 1px solid black;
-    border-top: 1px solid black;
-    text-align: center;
-    flex-grow: 1;
-    justify-content: center;
-    display: flex;
+  border-left: 1px solid black;
+  border-top: 1px solid black;
+  text-align: center;
+  flex-grow: 1;
+  justify-content: center;
+  display: flex;
 }
 
 .game-square:hover {
-    background-color:rgba(206, 130, 60, 0.281);
-    cursor: pointer;
+  background-color: rgba(206, 130, 60, 0.281);
+  cursor: pointer;
 }
 
-#s2,#s5,#s8 {
-    border-right: 1px solid black;
+#s2,
+#s5,
+#s8 {
+  border-right: 1px solid black;
 }
 
-#s6,#s7,#s8 {
-    border-bottom: 1px solid black;
+#s6,
+#s7,
+#s8 {
+  border-bottom: 1px solid black;
 }
 
 .game-square-content {
-    margin: auto;
-    font-size: 90px;
-    pointer-events: none;
+  margin: auto;
+  font-size: 90px;
+  pointer-events: none;
 }
 
 h1 {
-    text-align: center;
-    background-color: rgb(99, 202, 144);
-    font-size: 50px;
-    letter-spacing: 0.2em;
+  text-align: center;
+  background-color: rgb(99, 202, 144);
+  font-size: 50px;
+  letter-spacing: 0.2em;
 }
