@@ -24,6 +24,7 @@ The display is controlled by the object displayController
 - CSS
   - Styling
   - CSS Grid and Flex display
+  - keyframes animation
   
 - Problem Solving
   - Design and plan logic
