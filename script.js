@@ -65,10 +65,7 @@ const gameBoard = (() => {
     return Boolean(winCondition);
   };
 
-  const isATie = () => {
-    if (xLocations.length === 5) return true;
-    else return false;
-  };
+  const isATie = () => xLocations.length === 5;
 
   const isArraySubsetOfAnother = (subset, superset) => {
     const foundItems = subset.filter((subsetItem) =>
@@ -135,4 +132,5 @@ To-do
 - New Game button
 - HTML flairs (need to design)
 - animation for placing X and O on the board
+- found a bug with wining moves that have 0 as a location
 */
