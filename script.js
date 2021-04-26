@@ -68,9 +68,10 @@ const gameBoard = (() => {
   const isATie = () => xLocations.length === 5;
 
   const isArraySubsetOfAnother = (subset, superset) => {
-    const foundItems = subset.filter((subsetItem) =>
-      superset.find((superSetItem) => superSetItem === subsetItem)
-    );
+    const foundItems = subset.filter((subsetItem) => {
+        const foundItem = superset.find((superSetItem) => superSetItem === subsetItem);
+        return (foundItem === 0? true : foundItem);
+    });
     return foundItems.length === subset.length;
   };
 
