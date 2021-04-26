@@ -20,13 +20,27 @@ const gameBoard = (() => {
   let player1, player2, currentPlayer;
 
   const startNewGame = () => {
-    const player1Name = document.getElementById('player-1').value;
-    const player2Name = document.getElementById('player-2').value;
-    player1 = Player(player1Name, 'X');
-    player2 = Bot("Bot", 'O');
+    assignPlayer('player-1');
+    assignPlayer('player-2');
     currentPlayer = player1;
     resetBoard();
-    displayController.addListeners();
+    displayController.addSquareListeners();
+    if (player1.type === 'bot') player1.playBotMove(gameGridArray);
+  };
+
+  const assignPlayer = (player) => {
+    const playerType = document.querySelector(`[name="${player}-type"]:checked`)
+      .value;
+    const playerName = document.getElementById(player).value;
+    player === 'player-1'
+      ? (player1 = getPlayerObject(playerName, playerType, 'X'))
+      : (player2 = getPlayerObject(playerName, playerType, 'O'));
+  };
+
+  const getPlayerObject = (name, type, symbol) => {
+    return type === 'human'
+      ? Player(name, type, symbol)
+      : Bot(name, type, symbol);
   };
 
   const resetBoard = () => {
@@ -99,12 +113,15 @@ const gameBoard = (() => {
     displayController.displayResult(
       result === 'win' ? currentPlayer.name : 'tie'
     );
-    displayController.removeListeners();
+    displayController.removeSquareListeners();
   };
 
   const switchCurrentPlayer = () => {
     currentPlayer = currentPlayer === player1 ? player2 : player1;
-    if (currentPlayer.name === "Bot") currentPlayer.playBotMove(gameGridArray);
+    if (currentPlayer.type === 'bot')
+      setTimeout(() => {
+        currentPlayer.playBotMove(gameGridArray);
+      }, 500);
   };
 
   return {
@@ -118,14 +135,17 @@ const displayController = (() => {
   const gameSquares = document.querySelectorAll('.game-square');
   const gameContentDiv = document.querySelector('.game-content');
 
-  const addListeners = () => {
-    gameSquares.forEach((square) => {
-      square.addEventListener('click', gameBoard.playMove);
-    });
+  const addNewGameListener = () => {
     newGameButton.addEventListener('click', gameBoard.startNewGame);
   };
 
-  const removeListeners = () => {
+  const addSquareListeners = () => {
+    gameSquares.forEach((square) => {
+      square.addEventListener('click', gameBoard.playMove);
+    });
+  };
+
+  const removeSquareListeners = () => {
     gameSquares.forEach((square) => {
       square.removeEventListener('click', gameBoard.playMove);
     });
@@ -139,14 +159,19 @@ const displayController = (() => {
     gameContentDiv.appendChild(resultText);
   };
 
-  return { addListeners, removeListeners, displayResult };
+  return {
+    addNewGameListener,
+    addSquareListeners,
+    removeSquareListeners,
+    displayResult,
+  };
 })();
 
-const Player = (name, symbol) => {
-  return { name, symbol };
+const Player = (name, type, symbol) => {
+  return { name, type, symbol };
 };
 
-const Bot = (name, symbol) => {
+const Bot = (name, type, symbol) => {
   const playBotMove = (gameGridArray) => {
     const botMove = getRandomMove(getPossibleMoves(gameGridArray));
     botClickScreen(botMove);
@@ -163,19 +188,17 @@ const Bot = (name, symbol) => {
   const getRandomMove = (array) => {
     const randomMove = array[Math.floor(Math.random() * array.length)];
     return randomMove;
-  }
+  };
 
   const botClickScreen = (index) => {
     const selectedSquare = document.getElementById(`s${index}`);
     selectedSquare.click();
   };
 
-  return { name, symbol, playBotMove };
+  return { name, type, symbol, playBotMove };
 };
 
-displayController.addListeners();
-gameBoard.startNewGame();
-
+displayController.addNewGameListener();
 /*
 To-do
 - UI change to choose bot or human
