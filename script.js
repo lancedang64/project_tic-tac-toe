@@ -1,10 +1,10 @@
 'use strict';
 
 const gameBoard = (() => {
-  const gameGridArray = Array(9).fill('');
+  let gameGridArray = Array(9).fill('');
 
-  const xLocations = [];
-  const oLocations = [];
+  let xLocations = [];
+  let oLocations = [];
 
   const winConditionArrays = [
     [0, 1, 2],
@@ -17,11 +17,26 @@ const gameBoard = (() => {
     [2, 5, 8],
   ];
 
-  let currentPlayer;
+  let player1, player2, currentPlayer;
 
   const startNewGame = () => {
-    displayController.addListeners();
+    const player1Name = document.getElementById('player-1').value;
+    const player2Name = document.getElementById('player-2').value;
+    player1 = Player(player1Name, 'X');
+    player2 = Player(player2Name, 'O');
     currentPlayer = player1;
+    resetBoard();
+    displayController.addListeners();
+  };
+
+  const resetBoard = () => {
+    gameGridArray = gameGridArray.map((element) => (element = ''));
+    xLocations = [];
+    oLocations = [];
+    const playedMoves = document.querySelectorAll('.game-square-content');
+    playedMoves.forEach((playedMove) => playedMove.remove());
+    const lastRoundResult = document.querySelector('.result');
+    if (lastRoundResult) lastRoundResult.remove();
   };
 
   const playMove = (e) => {
@@ -98,6 +113,7 @@ const gameBoard = (() => {
 })();
 
 const displayController = (() => {
+  const newGameButton = document.querySelector('#new-game-button');
   const gameSquares = document.querySelectorAll('.game-square');
   const gameContentDiv = document.querySelector('.game-content');
 
@@ -105,6 +121,7 @@ const displayController = (() => {
     gameSquares.forEach((square) => {
       square.addEventListener('click', gameBoard.playMove);
     });
+    newGameButton.addEventListener('click', gameBoard.startNewGame);
   };
 
   const removeListeners = () => {
@@ -128,14 +145,9 @@ const Player = (name, symbol) => {
   return { name, symbol };
 };
 
-const player1 = Player('Player 1', 'X');
-const player2 = Player('Player 2', 'O');
-
+displayController.addListeners();
 gameBoard.startNewGame();
 
 /*
 To-do
-- Design
-- New Game button
-- Player Name area
 */
