@@ -178,5 +178,5 @@ gameBoard.startNewGame();
 
 /*
 To-do
-- AI easy bot
+- UI change to choose bot or human
 */

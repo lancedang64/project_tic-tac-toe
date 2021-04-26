@@ -43,10 +43,35 @@ input {
   text-align: center;
   font-family: 'Emulogic';
   font-size: 16px;
+  padding: 10px 0;
 }
 
 button {
   font-family: 'Emulogic';
+}
+
+.player-type {
+  display: flex;
+  flex-direction: row;
+}
+
+input[type=radio] {
+  display: none;
+}
+
+.player-type-label {
+  flex-grow: 1;
+  border: 1px solid white;
+  padding: 10px 0;
+}
+
+input[type=radio]:checked + label {
+  font-style: normal;
+  color: black;
+  background-color: rgb(226,233,253);
+}
+
+#new-game-button {
   font-size: 16px;
   padding: 1.5em;
 }
