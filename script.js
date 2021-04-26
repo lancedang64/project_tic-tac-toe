@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
 const gameBoard = (() => {
-  const gameGridArray = Array(9).fill("");
+  const gameGridArray = Array(9).fill('');
 
   const xLocations = [];
   const oLocations = [];
@@ -31,13 +31,13 @@ const gameBoard = (() => {
       updateSymbolLocation(squareSelected);
       updateGridArray(squareSelected);
       render(squareSelected);
-      if (isPlayerWin()) endGame("win");
-      else if (isATie()) endGame("tie");
+      if (isPlayerWin()) endGame('win');
+      else if (isATie()) endGame('tie');
       else switchCurrentPlayer();
     }
   };
 
-  const isMoveValid = (squareSelected) => gameGridArray[squareSelected] === "";
+  const isMoveValid = (squareSelected) => gameGridArray[squareSelected] === '';
 
   const getCurrentSymbolLocations = () => {
     return currentPlayer == player1 ? xLocations : oLocations;
@@ -54,8 +54,8 @@ const gameBoard = (() => {
 
   const render = (squareSelected) => {
     const gameSquare = document.getElementById(`s${squareSelected}`);
-    const squareContent = document.createElement("p");
-    squareContent.className = "game-square-content";
+    const squareContent = document.createElement('p');
+    squareContent.className = 'game-square-content';
     squareContent.textContent = gameGridArray[squareSelected];
     gameSquare.appendChild(squareContent);
   };
@@ -82,7 +82,7 @@ const gameBoard = (() => {
 
   const endGame = (result) => {
     displayController.displayResult(
-      result === "win" ? currentPlayer.name : "tie"
+      result === 'win' ? currentPlayer.name : 'tie'
     );
     displayController.removeListeners();
   };
@@ -98,26 +98,26 @@ const gameBoard = (() => {
 })();
 
 const displayController = (() => {
-  const gameSquares = document.querySelectorAll(".game-square");
-  const contentDiv = document.querySelector(".content");
+  const gameSquares = document.querySelectorAll('.game-square');
+  const contentDiv = document.querySelector('.content');
 
   const addListeners = () => {
     gameSquares.forEach((square) => {
-      square.addEventListener("click", gameBoard.playMove);
+      square.addEventListener('click', gameBoard.playMove);
     });
   };
 
   const removeListeners = () => {
     gameSquares.forEach((square) => {
-      square.removeEventListener("click", gameBoard.playMove);
+      square.removeEventListener('click', gameBoard.playMove);
     });
   };
 
   const displayResult = (result) => {
-    const resultText = document.createElement("h1");
-    resultText.className = "result";
+    const resultText = document.createElement('p');
+    resultText.className = 'result';
     resultText.textContent =
-      result === "tie" ? "It's a tie!" : `${result} is the winner!`;
+      result === 'tie' ? "It's a tie!" : `${result} is the winner!`;
     contentDiv.insertBefore(resultText, contentDiv.firstChild);
   };
 
@@ -128,13 +128,14 @@ const Player = (name, symbol) => {
   return { name, symbol };
 };
 
-const player1 = Player("Player 1", "X");
-const player2 = Player("Player 2", "O");
+const player1 = Player('Player 1', 'X');
+const player2 = Player('Player 2', 'O');
 
 gameBoard.startNewGame();
 
 /*
 To-do
+- Design
 - New Game button
-- HTML flairs (need to design)
+- Player Name area
 */

@@ -1,13 +1,13 @@
 @font-face {
-  font-family: "ArcadeClassic";
-  src: url("font/ArcadeClassic.woff2") format("woff2"),
-    url("font/ArcadeClassic.woff") format("woff"),
-    url("font/ArcadeClassic.ttf") format("truetype");
+  font-family: 'Emulogic';
+  src: url('font/Emulogic.woff2') format('woff2'),
+    url('font/Emulogic.woff') format('woff'),
+    url('font/Emulogic-zrEw.ttf') format('truetype');
 }
 
 body {
   background-color: gray;
-  font-family: "ArcadeClassic";
+  font-family: 'Emulogic';
   font-weight: normal;
 }
 
@@ -66,21 +66,32 @@ body {
   animation: playMove 0.6s 1;
 }
 
-h1.result {
+.result {
   text-align: center;
   background-color: rgb(99, 202, 144);
   font-size: 50px;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.1em;
   animation: announceResult 0.3s 5;
 }
 
 @keyframes announceResult {
-    0% {background-color:rgb(99, 202, 144);}
-    50% {background-color: white;}
-    100% {background-color:rgb(99, 202, 144);}
+  0% {
+    background-color: rgb(99, 202, 144);
+  }
+  50% {
+    background-color: white;
+  }
+  100% {
+    background-color: rgb(99, 202, 144);
+  }
 }
 
 @keyframes playMove {
-  0% {opacity: 0; font-size: 125px}
-  100% {opacity: 1;}
+  0% {
+    opacity: 0;
+    font-size: 125px;
+  }
+  100% {
+    opacity: 1;
+  }
 }
