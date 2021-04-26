@@ -63,6 +63,7 @@ body {
   margin: auto;
   font-size: 90px;
   pointer-events: none;
+  animation: playMove 0.6s 1;
 }
 
 h1.result {
@@ -70,11 +71,16 @@ h1.result {
   background-color: rgb(99, 202, 144);
   font-size: 50px;
   letter-spacing: 0.2em;
-  animation: playMove 0.3s 5;
+  animation: announceResult 0.3s 5;
 }
 
-@keyframes playMove {
+@keyframes announceResult {
     0% {background-color:rgb(99, 202, 144);}
     50% {background-color: white;}
     100% {background-color:rgb(99, 202, 144);}
+}
+
+@keyframes playMove {
+  0% {opacity: 0; font-size: 125px}
+  100% {opacity: 1;}
 }

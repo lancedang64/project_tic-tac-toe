@@ -53,8 +53,11 @@ const gameBoard = (() => {
   };
 
   const render = (squareSelected) => {
-    const squareContent = document.getElementById(`c${squareSelected}`);
+    const gameSquare = document.getElementById(`s${squareSelected}`);
+    const squareContent = document.createElement("p");
+    squareContent.className = "game-square-content";
     squareContent.textContent = gameGridArray[squareSelected];
+    gameSquare.appendChild(squareContent);
   };
 
   const isPlayerWin = () => {
@@ -69,8 +72,10 @@ const gameBoard = (() => {
 
   const isArraySubsetOfAnother = (subset, superset) => {
     const foundItems = subset.filter((subsetItem) => {
-        const foundItem = superset.find((superSetItem) => superSetItem === subsetItem);
-        return (foundItem === 0? true : foundItem);
+      const foundItem = superset.find(
+        (superSetItem) => superSetItem === subsetItem
+      );
+      return foundItem === 0 ? true : foundItem;
     });
     return foundItems.length === subset.length;
   };
@@ -132,6 +137,4 @@ gameBoard.startNewGame();
 To-do
 - New Game button
 - HTML flairs (need to design)
-- animation for placing X and O on the board
-- found a bug with wining moves that have 0 as a location
 */
