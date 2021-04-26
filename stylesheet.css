@@ -22,7 +22,7 @@ p {
 }
 
 a {
-  color:rgb(99, 202, 144);
+  color: rgb(99, 202, 144);
 }
 
 .controller-content {
@@ -55,7 +55,7 @@ button {
   flex-direction: row;
 }
 
-input[type=radio] {
+input[type='radio'] {
   display: none;
 }
 
@@ -65,15 +65,21 @@ input[type=radio] {
   padding: 10px 0;
 }
 
-input[type=radio]:checked + label {
+input[type='radio']:checked + label {
   font-style: normal;
   color: black;
-  background-color: rgb(226,233,253);
+  background-color: rgb(226, 233, 253);
 }
 
 #new-game-button {
   font-size: 16px;
   padding: 1.5em;
+}
+
+#new-game-button:active {
+  background-color:rgb(99, 202, 144);
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 .game-content {
@@ -142,6 +148,16 @@ input[type=radio]:checked + label {
   animation: announceResult 0.3s 5;
 }
 
+@keyframes playMove {
+  0% {
+    opacity: 0;
+    font-size: 80px;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 @keyframes announceResult {
   0% {
     background-color: rgb(99, 202, 144);
@@ -151,15 +167,5 @@ input[type=radio]:checked + label {
   }
   100% {
     background-color: rgb(99, 202, 144);
-  }
-}
-
-@keyframes playMove {
-  0% {
-    opacity: 0;
-    font-size: 80px;
-  }
-  100% {
-    opacity: 1;
   }
 }

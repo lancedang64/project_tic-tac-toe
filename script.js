@@ -40,7 +40,7 @@ const gameBoard = (() => {
   const getPlayerObject = (name, type, symbol) => {
     return type === 'human'
       ? Player(name, type, symbol)
-      : Bot(name, type, symbol);
+      : Bot(name + "-bot", type, symbol);
   };
 
   const resetBoard = () => {
@@ -199,6 +199,7 @@ const Bot = (name, type, symbol) => {
 };
 
 displayController.addNewGameListener();
+gameBoard.startNewGame();
 /*
 To-do
 - UI change to choose bot or human
