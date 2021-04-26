@@ -99,7 +99,7 @@ const gameBoard = (() => {
 
 const displayController = (() => {
   const gameSquares = document.querySelectorAll('.game-square');
-  const contentDiv = document.querySelector('.content');
+  const gameContentDiv = document.querySelector('.game-content');
 
   const addListeners = () => {
     gameSquares.forEach((square) => {
@@ -118,7 +118,7 @@ const displayController = (() => {
     resultText.className = 'result';
     resultText.textContent =
       result === 'tie' ? "It's a tie!" : `${result} is the winner!`;
-    contentDiv.insertBefore(resultText, contentDiv.firstChild);
+    gameContentDiv.appendChild(resultText);
   };
 
   return { addListeners, removeListeners, displayResult };
