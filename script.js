@@ -23,7 +23,7 @@ const gameBoard = (() => {
     const player1Name = document.getElementById('player-1').value;
     const player2Name = document.getElementById('player-2').value;
     player1 = Player(player1Name, 'X');
-    player2 = Player(player2Name, 'O');
+    player2 = Bot("Bot", 'O');
     currentPlayer = player1;
     resetBoard();
     displayController.addListeners();
@@ -104,6 +104,7 @@ const gameBoard = (() => {
 
   const switchCurrentPlayer = () => {
     currentPlayer = currentPlayer === player1 ? player2 : player1;
+    if (currentPlayer.name === "Bot") currentPlayer.playBotMove(gameGridArray);
   };
 
   return {
@@ -145,9 +146,37 @@ const Player = (name, symbol) => {
   return { name, symbol };
 };
 
+const Bot = (name, symbol) => {
+  const playBotMove = (gameGridArray) => {
+    const botMove = getRandomMove(getPossibleMoves(gameGridArray));
+    botClickScreen(botMove);
+  };
+
+  const getPossibleMoves = (gameGridArray) => {
+    let possibleMoves = [];
+    for (let i = 0; i < gameGridArray.length; i++) {
+      if (gameGridArray[i] === '') possibleMoves.push(i);
+    }
+    return possibleMoves;
+  };
+
+  const getRandomMove = (array) => {
+    const randomMove = array[Math.floor(Math.random() * array.length)];
+    return randomMove;
+  }
+
+  const botClickScreen = (index) => {
+    const selectedSquare = document.getElementById(`s${index}`);
+    selectedSquare.click();
+  };
+
+  return { name, symbol, playBotMove };
+};
+
 displayController.addListeners();
 gameBoard.startNewGame();
 
 /*
 To-do
+- AI easy bot
 */
