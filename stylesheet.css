@@ -71,6 +71,11 @@ input[type='radio']:checked + label {
   background-color: rgb(226, 233, 253);
 }
 
+#press-me {
+  animation: moveUpDown 1s 5;
+  margin: 0.5em auto;
+}
+
 #new-game-button {
   font-size: 16px;
   padding: 1.5em;
@@ -167,5 +172,13 @@ input[type='radio']:checked + label {
   }
   100% {
     background-color: rgb(99, 202, 144);
+  }
+}
+
+@keyframes moveUpDown {
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
   }
 }

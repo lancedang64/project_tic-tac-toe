@@ -54,6 +54,7 @@ const gameBoard = (() => {
   };
 
   const playMove = (e) => {
+    console.log(e);
     const squareSelected = e.target.id.slice(1);
     if (!isMoveValid(squareSelected)) return;
     else {
